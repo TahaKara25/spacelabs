@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression" parallel="classes" thread-count="10">
+
+    <!-- in this case we don't need to specify every class one by one, just include package-->
+    <test name="SpaceLabTest">
+
+        <classes>
+            <class name="Tests.SpaceLab"/>
+        </classes>
+    </test>
+</suite>
+
+
+
