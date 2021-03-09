@@ -1,20 +1,14 @@
 package Pages;
 
-import Utility.Driver;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
+import Utility.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
-
-import java.util.logging.XMLFormatter;
 
 public class SpaceLabSearch extends BasePage {
 
     WebDriver driver;
-
 
     public SpaceLabSearch() {
         driver = BasePage.getDriver();
@@ -22,18 +16,18 @@ public class SpaceLabSearch extends BasePage {
     }
 
 
-    @FindBy(xpath = "//div[@class= 'pR49Ae gsfi']")
+    @FindBy(xpath = "//input[@class='gLFyf gsfi']")
     public WebElement searchBox;
 
 
-    @FindBy (xpath = "//h3[@class='LC20lb DKV0Md' and span='SafeNSound | Spacelabs Healthcare']")
+    @FindBy(xpath = "//h3[@class='LC20lb DKV0Md' and span='SafeNSound | Spacelabs Healthcare']")
     public WebElement clickFirstLink;
 
 
-    public void verifyLink(){
-
+    public void verifyLink() throws InterruptedException {
         searchBox.sendKeys("spacelabs safensound");
         searchBox.submit();
         clickFirstLink.click();
 
-}}
+    }
+}
