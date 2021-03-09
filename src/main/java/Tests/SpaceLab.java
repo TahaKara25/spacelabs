@@ -1,5 +1,7 @@
 package Tests;
 
+import Pages.PrintSafeNSound;
+import Pages.SpaceLabSearch;
 import Utility.BrowserFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -10,6 +12,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 public class SpaceLab {
@@ -19,29 +22,25 @@ public class SpaceLab {
     @BeforeMethod
     public void setup() {
         driver = BrowserFactory.getDriver("chrome");
-        driver.get("https://www.google.com/webhp?source=search_app&gws_rd=ssl");
+        driver.get("https://www.google.com/");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
-    public void verifyLink() {
+        @Test
 
-        WebElement element = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-        element.sendKeys("spacelabs safensound!");
-        element.submit();
-        driver.findElement(By.xpath("//h3[@class='LC20lb DKV0Md' and span='SafeNSound | Spacelabs Healthcare']")).click();
+        public void verifyLinkTest() {
 
+        SpaceLabSearch spaceLab = new SpaceLabSearch();
+        spaceLab.verifyLink();
         String actualTitle = driver.getTitle();
         String expectedTitle = "SafeNSound | Spacelabs Healthcare";
         Assert.assertEquals(expectedTitle, actualTitle);
-
     }
         @Test
         public void PrintLinks () {
 
-            WebElement element = driver.findElement(By.xpath("//input[@class='gLFyf gsfi']"));
-            element.sendKeys("spacelabs safensound!");
-            element.submit();
-
+            PrintSafeNSound printLinks = new PrintSafeNSound();
+            printLinks.PrintSafeNSoundLinks();
             List<WebElement> links = driver.findElements(By.tagName("a"));
 
             //Traversing through the list and printing its text along with link address
@@ -51,11 +50,10 @@ public class SpaceLab {
                 if (textsOfLinks.contains("SafeNSound")) {
                     System.out.println(textsOfLinks);
                 }
-            }
+            }}
+                @AfterMethod
+                public void teardown () {
+                    driver.quit();
+                }
+
         }
-        @AfterMethod
-        public void teardown () {
-            driver.quit();
-        }}
-
-

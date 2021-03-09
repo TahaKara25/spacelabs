@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
         private static WebDriver driver;
 
         //    you cannot do like this, if constructor is private Driver obj = new Driver()
-        private Driver() {
+        public Driver() {
 
         }
         //if switch statement complains on string parameter
@@ -44,6 +44,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
             //if webdriver object was created - you can use it
             return driver;
         }
+        public String getTitle() {
+            return null;
+        }
 
         public static void close() {
             //if driver still exist
@@ -54,5 +57,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
                 driver = null;
             }
         }
+
     }
 
